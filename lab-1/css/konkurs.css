@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #eef7ff 0%, #f0f2f5 100%);
+}
+
+
+.contest-page-wrapper {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contest-page-wrapper h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.logo {
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.contest-container {
+    --background-color: rgba(255, 255, 255, 0.85);
+    --text-color: #1c1e21;
+    --header-color: #333;
+    --label-color: #495057;
+    --border-color: #ffffff33;
+    --input-background: #ffffff;
+    --input-border: #ced4da;
+    --focus-border: #5cb85c;
+    --focus-shadow: rgba(92, 184, 92, 0.25);
+    
+    background-color: var(--background-color);
+    border: 1px solid #ffffff33;
+    padding: 30px 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.contest-form-group {
+    margin-bottom: 15px;
+}
+
+.contest-form-group label, 
+.radio-group legend {
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.contest-form-group label {
+    cursor: pointer;
+}
+
+.contest-form-group input[type="email"],
+.contest-form-group input[type="text"],
+.contest-form-group input[type="number"]{
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 12px;
+    font-family: inherit;
+}
+
+.contest-form-group input[list],
+.contest-form-group input[type="date"],
+.contest-form-group select{
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 12px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.contest-form-group input[type="color"] {
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--input-border);
+    cursor: pointer;
+}
+
+.radio-group {
+    border: 2px solid var(--input-border);
+    padding: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.radio-group legend {
+   padding: 0 5px;
+   margin-left: 10px;
+   font-size: 16px;
+}
+
+.radio-group label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#rules-agreement{
+    cursor: pointer;
+    margin-right: 7px;
+}
+
+.submit-green {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: linear-gradient(45deg, #5cb85c, #4cae4c);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;  
+    box-shadow: 0 4px 15px rgba(92, 184, 92, 0.2);
+}
+
+.submit-green:hover {
+    background: linear-gradient(45deg, #4cae4c, #45a049);
+    box-shadow: 0 6px 20px rgba(92, 184, 92, 0.4);
+}
+
+.back-link {
+    font-size: 1rem;
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.back-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* --- Dark Theme Toggle Styles --- */
+.theme-toggle {
+    display: none;
+}
+
+#theme-toggle:checked ~ .contest-page-wrapper h2,
+#theme-toggle:checked ~ .contest-container {
+    color: #e4e6eb;
+}
+
+#theme-toggle:checked ~ .contest-container {
+    --background-color: rgba(0, 0, 0, 0.85);
+    --text-color: #e4e6eb;
+    --header-color: #e4e6eb;
+    --label-color: #b0b3b8;
+    --border-color: rgb(255, 255, 255);
+    --input-background: #3a3a3a;
+    --input-border: #ffffff;
+    
+    color-scheme: dark;
+}
+
