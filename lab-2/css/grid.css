@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+main :is(h1, h2, h3, p),
+aside :is(h1, h2, h3, p) {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* =================================
+   Style (Mobile First)
+   ================================= */
+.container {
+  width: 100%;
+  background-color: #fff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #f39c12;
+  color: #ffffff;
+}
+
+.logo {
+  background-color: #ffffff;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-right: 20px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.logo::before {
+  content: "Logo ";
+  color: black;
+  font-weight: bold;
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #3498db;
+  padding: 10px 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  font-weight: bold;
+}
+
+main {
+  padding: 25px;
+  line-height: 1.6;
+
+}
+
+aside {
+  background-color: #e6f5e9;
+  padding: 25px;
+}
+
+aside > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 15px;
+  gap: 10px;
+  padding: 0 15px;
+}
+
+aside > div span {
+  font-size: 4.5rem;
+  min-width: 48px;
+  text-align: center;
+}
+
+footer {
+  background-color: #2ecc71;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+@media (min-width: 1024px) {
+  body {
+    background-color: #dcdcdc;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  header, nav, footer {
+    flex-basis: 100%;
+  }
+
+  nav {
+    justify-content: flex-start;
+  }
+
+  nav a {
+    padding: 8px 20px; 
+  }
+
+  main {
+    flex: 3;
+    min-width: 0;
+  }
+
+  aside {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  aside > div {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 15px;
+    justify-content: center;
+    padding: 0;
+  }
+}
