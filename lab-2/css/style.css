@@ -14,7 +14,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
-    background: linear-gradient(-150deg, #bdfff5 0%, #f0f2f5 100%);
+    background: linear-gradient(320deg, #1d1c1c8f -20%, #f0f2f5 100%);
 }
 
 .main-container, .login-container {
