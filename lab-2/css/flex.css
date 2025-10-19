@@ -1,0 +1,183 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  padding: 1rem;
+}
+
+.theme-picker {
+  background-color: #f5f6dc;
+  border: 2px solid #dc8e4c;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 15px;
+  background-color: #f5f6dc;
+  border: 2px solid #dc8e4c;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.item {
+  flex-basis: calc(33.333% - 16.67px);
+  height: 70px;
+  border-radius: 6px;
+  background-color: #0403fc;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  order: 0;
+}
+
+@media screen and (min-width: 985px) {
+  .item:nth-child(4) {
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 984px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container .item {
+    width: 80%;
+    flex-basis: auto;
+  }
+}
+
+header:has(input[value="red"]:checked) ~ .container {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+header:has(input[value="red"]:checked) ~ .container .item {
+  background-color: #fd0304;
+  margin-right: 0;
+  flex-basis: calc(50% - 12.5px);
+  flex-grow: 1;
+  width: auto;
+}
+
+header:has(input[value="red"]:checked) ~ .container .item:nth-child(1) {
+  flex-basis: 100%;
+  order: 3;
+  display: flex;
+  flex-direction: column-reverse;
+  line-height: 1.2;
+}
+
+header:has(input[value="red"]:checked) ~ .container .item:nth-child(1)::before {
+  content: "(Jestem większy i na środku)";
+  font-size: 1rem;
+}
+
+header:has(input[value="red"]:checked) ~ .container .item:nth-child(2) {
+  order: 1;
+}
+header:has(input[value="red"]:checked) ~ .container .item:nth-child(3) {
+  order: 2;
+}
+header:has(input[value="red"]:checked) ~ .container .item:nth-child(4) {
+  order: 4;
+}
+header:has(input[value="red"]:checked) ~ .container .item:nth-child(5) {
+  order: 5;
+}
+
+@media screen and (min-width: 985px) {
+  header:has(input[value="red"]:checked) ~ .container .item {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  header:has(input[value="red"]:checked) ~ .container .item:nth-child(1) {
+    flex-grow: 2;
+    flex-basis: 0;
+  }
+}
+
+header:has(input[value="green"]:checked) ~ .container {
+  flex-direction: column-reverse; 
+  align-items: flex-end;
+}
+
+header:has(input[value="green"]:checked) ~ .container .item {
+  background-color: #048204;
+  margin-right: 0;
+  flex-basis: auto;
+  flex-grow: 0;
+  height: 70px;
+  order: 0;
+}
+
+header:has(input[value="green"]:checked) ~ .container .item:nth-child(1) {
+  width: 100%; 
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.2;
+}
+
+header:has(input[value="green"]:checked) ~ .container .item:nth-child(1)::before {
+  content: "😊";
+  font-size: 1.5rem;
+  transform: scale(2);
+}
+
+header:has(input[value="green"]:checked) ~ .container .item:nth-child(1)::after {
+  content: "😊";
+  font-size: 1.5rem;
+  transform: scale(2);
+}
+
+header:has(input[value="green"]:checked) ~ .container .item:nth-child(2) {
+  width: 90%;
+}
+header:has(input[value="green"]:checked) ~ .container .item:nth-child(3) {
+  width: 80%;
+}
+header:has(input[value="green"]:checked) ~ .container .item:nth-child(4) {
+  width: 70%;
+}
+header:has(input[value="green"]:checked) ~ .container .item:nth-child(5) {
+  width: 60%; 
+}
+
+@media screen and (min-width: 985px) {
+  header:has(input[value="green"]:checked) ~ .container {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  header:has(input[value="green"]:checked) ~ .container .item {
+    width: auto;
+    flex-basis: 0;
+  }
+
+  header:has(input[value="green"]:checked) ~ .container .item:nth-child(1) {
+    flex-grow: 5;
+  }
+
+  header:has(input[value="green"]:checked) ~ .container .item:nth-child(2) {
+    flex-grow: 4;
+  }
+
+  header:has(input[value="green"]:checked) ~ .container .item:nth-child(3) {
+    flex-grow: 3;
+  }
+
+  header:has(input[value="green"]:checked) ~ .container .item:nth-child(4) {
+    flex-grow: 2;
+  }
+
+  header:has(input[value="green"]:checked) ~ .container .item:nth-child(5) {
+    flex-grow: 1;
+  }
+}
