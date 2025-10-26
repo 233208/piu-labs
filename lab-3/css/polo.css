@@ -1,3 +1,45 @@
+@keyframes size-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+@keyframes size-pop-s {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1.0); }
+}
+@keyframes size-pop-m {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1.25); }
+}
+@keyframes size-pop-l {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.75); }
+  100% { transform: scale(1.5); }
+}
+@keyframes size-pop-xl {
+  0% { transform: scale(1) }
+  50% { transform: scale(2) }
+  100% { transform: scale(1.75) }
+}
+@keyframes shake-on-load {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate(-5px, 0) rotate(-1deg);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translate(5px, 0) rotate(1deg);
+  }
+}
 :root {
   --page-bg: #eee;
   font-size: 1rem;
@@ -63,6 +105,7 @@ body {
   aspect-ratio: 1/1;
   border-radius: 6px;
   border: 2px solid var(--theme-accent);
+  transition: border-color 0.4s ease;
 }
 
 .product-showcase .product-details {
@@ -110,6 +153,13 @@ body {
   border-radius: 5px;
   background-color: var(--theme-accent);
   color: #fff;
+  transition: background-color 0.4s ease;
+}
+.product-showcase .promotion {
+  display: inline-block;
+  cursor: pointer;
+  animation: shake-on-load 0.7s ease-in-out 2;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .product-showcase .color-selection {
@@ -145,6 +195,12 @@ body {
   border-radius: 100px;
   border: 1px solid #000;
   margin: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
+}
+
+.product-showcase .color-selection label:hover {
+  transform: scale(1.2);
 }
 
 .product-showcase .color-selection label[for="color_blue"] {
@@ -162,15 +218,19 @@ body {
 
 .product-showcase:has(#color_blue:checked) .color-selection > .color-swatches > label[for="color_blue"] {
   background: radial-gradient(circle, #1e5a9c 40%, #eeeeee 55%);
+  transform: scale(1.1);
 }
 .product-showcase:has(#color_red:checked) .color-selection > .color-swatches > label[for="color_red"] {
   background: radial-gradient(circle, #d32f2f 40%, #eeeeee 55%);
+  transform: scale(1.1);
 }
 .product-showcase:has(#color_green:checked) .color-selection > .color-swatches > label[for="color_green"] {
   background: radial-gradient(circle, #388e3c 40%, #eeeeee 55%);
+  transform: scale(1.1);
 }
 .product-showcase:has(#color_yellow:checked) .color-selection > .color-swatches > label[for="color_yellow"] {
   background: radial-gradient(circle, #fbc02d 40%, #eeeeee 55%);
+  transform: scale(1.1);
 }
 
 .product-showcase .size-selection {
@@ -196,9 +256,26 @@ body {
   position: absolute;
 }
 
-.product-showcase .size-selection input:checked + label {
+.product-showcase .size-selection input[id="size_s"]:checked + label[for="size_s"] {
   background-color: var(--theme-accent);
   color: #fff;
+  animation: size-pop-s 0.3s ease-out forwards;
+}
+.product-showcase .size-selection input[id="size_m"]:checked + label[for="size_m"] {
+  background-color: var(--theme-accent);
+  color: #fff;
+  animation: size-pop-m 0.3s ease-out forwards;
+}
+.product-showcase .size-selection input[id="size_l"]:checked + label[for="size_l"] {
+  background-color: var(--theme-accent);
+  color: #fff;
+  animation: size-pop-l 0.3s ease-out forwards;
+}
+.product-showcase .size-selection input[id="size_xl"]:checked + label[for="size_xl"] {
+  background-color: var(--theme-accent);
+  color: #fff;
+  z-index: 10;
+  animation: size-pop-xl 0.4s ease-out forwards;
 }
 
 .product-showcase .size-selection label {
@@ -210,6 +287,16 @@ body {
   margin: 7px;
   align-content: center;
   font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.product-showcase .size-selection input:not(:checked) + label:hover {
+  transform: scale(1.1);
+  background-color: #f5f5f5;
+  z-index: 2;
 }
 
 .cart-button {
@@ -221,4 +308,11 @@ body {
   justify-items: center;
   background-color: var(--theme-accent);
   color: #fff;
+  cursor: pointer;
+  transition: background-color 0.4s ease, transform 0.2s ease-out;
+}
+
+.cart-button:hover {
+  transform: scale(0.98);
+  filter: brightness(1.1);
 }
