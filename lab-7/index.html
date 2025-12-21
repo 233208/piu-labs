@@ -1,70 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab-7: Custom Elements Store</title>
+    <title>Lab-7: Sklep Custom Elements</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="./components/product-card.js"></script>
+    
+    <script type="module">
+        import productsData from './data.json' with { type: 'json' };
+        
+        import './components/product-list.js';
+        import './components/shopping-cart.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const list = document.querySelector('product-list');
+            const cart = document.querySelector('shopping-cart');
+
+            list.products = productsData;
+
+            list.addEventListener('add-to-cart', (e) => {
+                cart.addItem(e.detail);
+            });
+        });
+    </script>
 </head>
 <body>
 
-    <h1>New Arrivals</h1>
+    <header>
+        <h1>New Arrivals</h1>
+    </header>
 
-    <div class="product-grid">
-        <product-card>
-            <img slot="image" src="images/item1.jpg" alt="T-Shirt">
-            <span slot="title">White T-Shirt</span>
-            <span slot="price">$29.99</span>
-            <span slot="colors">White</span>
-            <span slot="sizes">S, M, L</span>
-            <span slot="promo">New!</span>
-        </product-card>
+    <div class="layout">
+        <main>
+            <product-list></product-list>
+        </main>
 
-        <product-card>
-            <img slot="image" src="images/item2.jpg" alt="Sneakers">
-            <span slot="title">Urban Sneakers</span>
-            <span slot="price">$89.00</span>
-            <span slot="colors">Red</span>
-            <span slot="sizes">42, 43, 44</span>
-            <span slot="promo">-20%</span>
-        </product-card>
-
-        <product-card>
-            <img slot="image" src="images/item3.jpg" alt="Shirt">
-            <span slot="title">Black Shirt</span>
-            <span slot="price">$45.50</span>
-            <span slot="colors">Black</span>
-            <span slot="sizes">M, L</span>
-        </product-card>
-
-        <product-card>
-            <img slot="image" src="images/item4.jpg" alt="Jacket">
-            <span slot="title">Denim Jacket</span>
-            <span slot="price">$120.00</span>
-            <span slot="colors">Brown</span>
-            <span slot="sizes">S, M, L</span>
-            <span slot="promo">Best!</span>
-        </product-card>
-
-        <product-card>
-            <img slot="image" src="images/item5.jpg" alt="Beanie">
-            <span slot="title">Winter Beanie</span>
-            <span slot="price">$15.00</span>
-            <span slot="colors">Beige</span>
-            <span slot="sizes">One Size</span>
-        </product-card>
-
-        <product-card>
-            <img slot="image" src="images/item6.jpg" alt="Hoodie">
-            <span slot="title">Black Hoodie</span>
-            <span slot="price">$55.99</span>
-            <span slot="colors">Black</span>
-            <span slot="sizes">XS, S</span>
-            <span slot="promo">Limited</span>
-        </product-card>
+        <aside>
+            <shopping-cart></shopping-cart>
+        </aside>
     </div>
 
 </body>
-
 </html>

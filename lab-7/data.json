@@ -1,0 +1,54 @@
+[
+    {
+        "id": 1,
+        "title": "White T-Shirt",
+        "price": 29.99,
+        "image": "images/item1.jpg",
+        "colors": "White",
+        "sizes": "S, M, L",
+        "promo": "New!"
+    },
+    {
+        "id": 2,
+        "title": "Urban Sneakers",
+        "price": 89.00,
+        "image": "images/item2.jpg",
+        "colors": "Red",
+        "sizes": "42, 43, 44",
+        "promo": "-20%"
+    },
+    {
+        "id": 3,
+        "title": "Black Shirt",
+        "price": 45.50,
+        "image": "images/item3.jpg",
+        "colors": "Black",
+        "sizes": "M, L"
+    },
+    {
+        "id": 4,
+        "title": "Denim Jacket",
+        "price": 120.00,
+        "image": "images/item4.jpg",
+        "colors": "Brown",
+        "sizes": "S, M, L",
+        "promo": "Best!"
+    },
+    {
+        "id": 5,
+        "title": "Winter Beanie",
+        "price": 15.00,
+        "image": "images/item5.jpg",
+        "colors": "Beige",
+        "sizes": "One Size"
+    },
+    {
+        "id": 6,
+        "title": "Black Hoodie",
+        "price": 55.99,
+        "image": "images/item6.jpg",
+        "colors": "Black",
+        "sizes": "XS, S",
+        "promo": "Limited"
+    }
+]

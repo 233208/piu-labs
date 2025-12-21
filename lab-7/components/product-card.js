@@ -3,20 +3,21 @@ template.innerHTML = `
   <style>
     :host {
       display: block;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
     }
     .card {
       background: white;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      height: 100%; 
+      transition: transform 0.3s, box-shadow 0.3s; 
       position: relative;
-      transition: transform 0.3s, box-shadow 0.3s;
     }
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px); 
       box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
     .img-box {
@@ -27,18 +28,22 @@ template.innerHTML = `
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      position: relative;
     }
-    ::slotted(img) {
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s;
+      transition: transform 0.3s; 
     }
-    .card:hover ::slotted(img) {
-      transform: scale(1.05);
+    .card:hover img {
+      transform: scale(1.05); 
     }
     .content {
       padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
     h2 {
       font-size: 1.25rem;
@@ -64,14 +69,14 @@ template.innerHTML = `
       border-radius: 6px;
       cursor: pointer;
       width: 100%;
-      margin-top: 15px;
-      transition: background 0.2s, transform 0.1s;
+      margin-top: auto; 
+      transition: background 0.2s, transform 0.1s; 
     }
     button:hover {
       background-color: #2980b9;
     }
     button:active {
-      transform: scale(0.95);
+      transform: scale(0.95); 
     }
     .promo {
       position: absolute;
@@ -82,20 +87,15 @@ template.innerHTML = `
       padding: 5px 10px;
       border-radius: 20px;
       font-size: 0.8rem;
-      animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    @keyframes pop {
-      0% { transform: scale(0); }
-      100% { transform: scale(1); }
+      display: none; 
+      z-index: 2;
     }
   </style>
 
   <div class="card">
     <div class="img-box">
-      <slot name="image"></slot>
-      <div class="promo">
-        <slot name="promo"></slot>
-      </div>
+      <img src="" alt="Product">
+      <div class="promo"></div>
     </div>
     
     <div class="content">
@@ -119,14 +119,74 @@ export default class ProductCard extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-  connectedCallback() {
-      const btn = this.shadowRoot.querySelector('button');
-      btn.addEventListener('click', () => alert('Added to cart!'));
+  static get observedAttributes() {
+    return ['title', 'price', 'image', 'promo'];
+  }
 
-      const promoSlot = this.shadowRoot.querySelector('slot[name="promo"]');
-      if (promoSlot.assignedNodes().length === 0) {
-          this.shadowRoot.querySelector('.promo').style.display = 'none';
+  attributeChangedCallback(name, oldVal, newVal) {
+    if (oldVal === newVal) return;
+
+    if (name === 'image') {
+       this.shadowRoot.querySelector('img').src = newVal;
+       this.shadowRoot.querySelector('img').alt = this.getAttribute('title') || 'Produkt';
+    } 
+    else if (name === 'promo') {
+       const el = this.shadowRoot.querySelector('.promo');
+       if (newVal) {
+           el.style.display = 'block';
+           el.textContent = newVal;
+       } else {
+           el.style.display = 'none';
+       }
+    }
+    if (name === 'title') this._updateSlot('title', newVal);
+    if (name === 'price') this._updateSlot('price', `$${parseFloat(newVal).toFixed(2)}`);
+  }
+  get title() { return this.getAttribute('title'); }
+  set title(val) { this.setAttribute('title', val); }
+
+  get price() { return this.getAttribute('price'); }
+  set price(val) { this.setAttribute('price', val); }
+
+  get image() { return this.getAttribute('image'); }
+  set image(val) { this.setAttribute('image', val); }
+
+  get promo() { return this.getAttribute('promo'); }
+  set promo(val) { 
+      if (val) this.setAttribute('promo', val);
+      else this.removeAttribute('promo');
+  }
+
+  set colors(val) { this._updateSlot('colors', val); }
+  set sizes(val) { this._updateSlot('sizes', val); }
+
+  _updateSlot(name, text) {
+      let el = this.querySelector(`[slot="${name}"]`);
+      if (!el) {
+          el = document.createElement('span');
+          el.slot = name;
+          this.appendChild(el);
       }
+      el.textContent = text;
+  }
+
+  connectedCallback() {
+      this.shadowRoot.querySelector('button').addEventListener('click', this.#handleAddToCart);
+  }
+
+  disconnectedCallback() {
+      this.shadowRoot.querySelector('button').removeEventListener('click', this.#handleAddToCart);
+  }
+
+  #handleAddToCart = () => {
+      this.dispatchEvent(new CustomEvent('add-to-cart', {
+          bubbles: true,
+          composed: true,
+          detail: {
+              title: this.title,
+              price: parseFloat(this.price)
+          }
+      }));
   }
 }
 
